@@ -4,6 +4,7 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 const Slider = ({ images }) => {
   const [current, setCurrent] = useState(0);
+  const [width, setWidth] = useState(1024);
 
   const onPrevClick = () => {
     if (current > 0) {
@@ -32,7 +33,10 @@ const Slider = ({ images }) => {
   return (
     <main className="flex flex-col items-center justify-between overflow-x-hidden lg:px-24">
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-        <div className="relative max-w-[600px] flex items-center">
+        <div
+          className="relative flex items-center"
+          style={{ maxWidth: width < 1024 ? width : 1024 }}
+        >
           {/* Left/right controls */}
           <motion.div
             className="absolute left-2 right-2 flex justify-between z-10"
@@ -63,6 +67,14 @@ const Slider = ({ images }) => {
                 key={idx}
                 src={image}
                 alt={image}
+                onLoad={(e) => {
+                  setWidth((prev) => {
+                    if (prev > e.target.width) {
+                      return e.target.width;
+                    }
+                    return prev;
+                  });
+                }}
                 animate={{
                   opacity: idx === current ? 1 : 0.3,
                   scale: idx === current ? 1 : 0.95,
