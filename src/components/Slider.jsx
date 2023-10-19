@@ -2,9 +2,10 @@ import { MotionConfig, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
-const Slider = ({ images }) => {
+const Slider = ({ images, texts }) => {
   const [current, setCurrent] = useState(0);
   const [width, setWidth] = useState(1024);
+  const [imageWidth, setImageWidth] = useState(0);
 
   const onPrevClick = () => {
     if (current > 0) {
@@ -30,13 +31,24 @@ const Slider = ({ images }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (imageWidth && window.innerWidth)
+        setWidth(Math.min(1024, imageWidth, window.innerWidth));
+    };
+    handleWindowResize();
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [imageWidth]);
+
   return (
     <main className="flex flex-col items-center justify-between overflow-x-hidden lg:px-24">
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-        <div
-          className="relative flex items-center"
-          style={{ maxWidth: width < 1024 ? width : 1024 }}
-        >
+        <div className="relative flex items-center" style={{ maxWidth: width }}>
           {/* Left/right controls */}
           <motion.div
             className="absolute left-2 right-2 flex justify-between z-10"
@@ -58,31 +70,46 @@ const Slider = ({ images }) => {
             </button>
           </motion.div>
           {/* List of images */}
-          <motion.div
+          <motion.section
             className="flex gap-4 flex-nowrap"
-            animate={{ x: `calc(-${current * 100}% - ${current}rem)` }}
+            animate={{
+              x: `calc(-${current * width}px - ${current}rem)`,
+            }}
           >
-            {[...images].map((image, idx) => (
-              <motion.img
-                key={idx}
-                src={image}
-                alt={image}
-                onLoad={(e) => {
-                  setWidth((prev) => {
-                    if (prev > e.target.width) {
-                      return e.target.width;
-                    }
-                    return prev;
-                  });
-                }}
+            {[...images].map((image, id) => (
+              <motion.div
+                key={id}
                 animate={{
-                  opacity: idx === current ? 1 : 0.3,
-                  scale: idx === current ? 1 : 0.95,
+                  opacity: id === current ? 1 : 0.3,
+                  scale: id === current ? 1 : 0.95,
                 }}
-                className="object-cover"
-              />
+                className="relative"
+              >
+                <img
+                  src={image}
+                  alt={image}
+                  loading="lazy"
+                  onLoad={(e) => {
+                    setImageWidth(e.target.width);
+                  }}
+                  className="object-cover block"
+                  style={{
+                    maxWidth: width,
+                  }}
+                />
+                {texts && (
+                  <div className="absolute top-5 md:top-10 left-5 md:left-5">
+                    <span className="relative flex-shrink-0 w-3 h-3 rounded-full bg-violet-400">
+                      <span className="absolute flex-shrink-0 w-4 h-4 rounded-full -left-1 -top-1 animate-ping bg-violet-400"></span>
+                    </span>
+                    <span className="text-md box-decoration-clone md:text-3xl font-bold bg-danger text-white opacity-75 px-2 py-1 text-center rounded-md">
+                      {texts[id % texts.length]}
+                    </span>
+                  </div>
+                )}
+              </motion.div>
             ))}
-          </motion.div>
+          </motion.section>
           {/* Controll pill */}
           <div className="absolute bottom-2 lg:bottom-10 left-1/2 transform -translate-x-1/2 z-10">
             <div className="flex gap-3 px-3 py-2 bg-gray-400 dark:bg-gray-600 rounded-full opacity-80">
