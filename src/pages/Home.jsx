@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Slider from "../components/Slider";
+import Features from "../components/Features";
 
 const cars = [
   "https://images.pexels.com/photos/18509922/pexels-photo-18509922/free-photo-of-lady-in-blue-can-you-guess-the-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -50,6 +51,7 @@ const Home = () => {
   return (
     <>
       <Slider images={width > 640 ? uil : uis} texts={texts} />
+      <Features />
     </>
   );
 };
