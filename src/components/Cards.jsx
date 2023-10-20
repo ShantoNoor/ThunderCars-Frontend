@@ -1,34 +1,9 @@
 import { Card, CardFooter, Image } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
-const data = JSON.parse(`[
-  {
-    "name": "Tesla",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png"
-  },
-  {
-    "name": "Lamborghini",
-    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Lamborghini_Logo.svg/800px-Lamborghini_Logo.svg.png"
-  },
-  {
-    "name": "Bugatti",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Bugatti_logo.svg/2560px-Bugatti_logo.svg.png"
-  },
-  {
-    "name": "BMW",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/600px-BMW.svg.png"
-  },
-  {
-    "name": "Mercedes-Benz",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/567px-Mercedes-Logo.svg.png"
-  },
-  {
-    "name": "Toyota",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Toyota_EU.svg/2560px-Toyota_EU.svg.png"
-  }
-]
-`);
+const Cards = ({ data }) => {
+  const navigate = useNavigate();
 
-const Cards = () => {
   return (
     <section className="p-6 dark:bg-dark dark:text-white">
       <div className="container p-4 mx-auto text-center">
@@ -40,6 +15,7 @@ const Cards = () => {
             <div
               key={idx}
               className="flex justify-center w-full p-6 align-middle md:w-1/2 xl:w-1/3"
+              onClick={() => navigate("/products/" + item.name)}
             >
               <Card
                 isFooterBlurred

@@ -14,7 +14,7 @@ const Subscribe = () => {
     >
       <div className="container flex flex-col flex-wrap content-center justify-center p-4 py-20 mx-auto md:p-10">
         <h1 className="text-5xl antialiased font-semibold leadi text-center dark:text-white text-black">
-          Get Our Updates
+          Get Our Updates.
         </h1>
         <p className="pt-2 pb-8 text-xl antialiased text-center dark:text-white text-black">
           Find out about events and other news

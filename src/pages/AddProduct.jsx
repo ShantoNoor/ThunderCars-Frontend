@@ -8,19 +8,39 @@ const AddProduct = () => {
     const brand_name = form.brand_name.value;
     const brand_image = form.brand_image.value;
     const type = form.type.value;
-    const price = form.price.value;
-    const rating = form.rating.value;
+    const price = parseInt(form.price.value);
+    const rating = parseFloat(form.rating.value);
     const description = form.description.value;
 
-    console.log(name, brand_name, type, brand_image, price, rating, description);
+    // console.log(name, brand_name, type, brand_image, price, rating, description);
+
+    fetch("http://localhost:3000/" + "products/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        brand_name,
+        type,
+        brand_image,
+        price,
+        rating,
+        description,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.error(err));
   };
   return (
-    <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
+    <section className="p-6 dark:bg-black dark:text-white">
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="container flex flex-col mx-auto space-y-12"
       >
-        <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
+        <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-black">
           <div className="space-y-2 col-span-full lg:col-span-1">
             <p className="font-medium">Add Product</p>
             <p className="text-xs">
@@ -131,14 +151,15 @@ const AddProduct = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-span-full">
-            <Button
-              type="submit"
-              className="block w-full p-3 text-center rounded-lg text-white bg-primary"
-            >
-              Add
-            </Button>
+
+            <div className="col-span-full">
+              <Button
+                type="submit"
+                className="block w-full p-3 text-center rounded-lg text-white bg-primary"
+              >
+                Add
+              </Button>
+            </div>
           </div>
         </fieldset>
       </form>

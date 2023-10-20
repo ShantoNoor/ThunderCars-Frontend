@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { Image } from "@nextui-org/react";
 
-const Slider = ({ images, texts }) => {
+const Slider = ({ data }) => {
   const [current, setCurrent] = useState(0);
   const [width, setWidth] = useState(1280);
   const [imageWidth, setImageWidth] = useState(0);
@@ -12,12 +12,12 @@ const Slider = ({ images, texts }) => {
     if (current > 0) {
       setCurrent(current - 1);
     } else {
-      setCurrent(images.length - 1);
+      setCurrent(data.length - 1);
     }
   };
 
   const onNextClick = () => {
-    if (current < images.length - 1) {
+    if (current < data.length - 1) {
       setCurrent(current + 1);
     } else {
       setCurrent(0);
@@ -70,14 +70,14 @@ const Slider = ({ images, texts }) => {
               <FiArrowRight className="h-8 w-8" />
             </button>
           </motion.div>
-          {/* List of images */}
+
           <motion.section
             className="flex gap-4 flex-nowrap"
             animate={{
               x: `calc(-${current * width}px - ${current}rem)`,
             }}
           >
-            {[...images].map((image, id) => (
+            {data && data?.map((item, id) => (
               <motion.div
                 key={id}
                 animate={{
@@ -87,8 +87,8 @@ const Slider = ({ images, texts }) => {
                 className="relative"
               >
                 <Image
-                  src={image}
-                  alt={image}
+                  src={item.image}
+                  alt={item.image}
                   loading="lazy"
                   onLoad={(e) => {
                     setImageWidth(e.target.width);
@@ -98,23 +98,22 @@ const Slider = ({ images, texts }) => {
                     maxWidth: width,
                   }}
                 />
-                {texts && (
-                  <div className="absolute text-center top-5 md:top-10 left-5 md:left-10 z-10">
-                    <span className="relative flex-shrink-0 w-3 h-3 rounded-full bg-violet-400">
-                      <span className="absolute flex-shrink-0 w-4 h-4 rounded-full -left-1 -top-1 lg:-top-5 animate-ping bg-violet-400"></span>
-                    </span>
-                    <span className="text-md box-decoration-clone md:text-3xl font-bold bg-danger text-white opacity-75 px-2 py-1 text-center rounded-md">
-                      {texts[id % texts.length]}
-                    </span>
-                  </div>
-                )}
+
+                <div className="absolute text-center top-5 md:top-10 left-5 md:left-10 z-10">
+                  <span className="relative flex-shrink-0 w-3 h-3 rounded-full bg-violet-400">
+                    <span className="absolute flex-shrink-0 w-4 h-4 rounded-full -left-1 -top-1 lg:-top-5 animate-ping bg-violet-400"></span>
+                  </span>
+                  <span className="text-md box-decoration-clone md:text-3xl font-bold bg-danger text-white opacity-75 px-2 py-1 text-center rounded-md">
+                    {item.text}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </motion.section>
           {/* Controll pill */}
           <div className="absolute bottom-2 lg:bottom-10 left-1/2 transform -translate-x-1/2 z-10">
             <div className="flex gap-3 px-3 py-2 bg-gray-400 dark:bg-gray-600 rounded-full opacity-80">
-              {[...images].map((_, idx) => (
+              { data &&  data.map((_, idx) => (
                 <button key={idx} onClick={() => setCurrent(idx)}>
                   <div
                     className={`w-2 h-2 rounded-full ${

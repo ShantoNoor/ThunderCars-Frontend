@@ -2,8 +2,7 @@ import { Link, useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
   const { status, statusText, ...data } = useRouteError();
-  console.log(status, statusText, data);
-
+  
   return (
     <section className="flex items-center h-[100vh] p-16 dark:bg-black dark:text-white">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
