@@ -15,7 +15,11 @@ const Cards = ({ data }) => {
             <div
               key={idx}
               className="flex justify-center w-full p-6 align-middle md:w-1/2 xl:w-1/3"
-              onClick={() => navigate("/products/" + item.name)}
+              onClick={() =>
+                navigate("/products/" + item.name, {
+                  state: { title: item.name },
+                })
+              }
             >
               <Card
                 isFooterBlurred

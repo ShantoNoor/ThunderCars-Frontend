@@ -1,22 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
 import { Input } from "@nextui-org/react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../assets/animations/sign-in.json";
+import useAuth from "../utility/useAuth";
 
 const SignIn = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const { signIn } = useAuth();
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    
+
+    signIn(email, password).then(() => {
+      if (state?.pathname) {
+        navigate(state.pathname, {
+          state: { title: state.title },
+        });
+      } else {
+        navigate("/");
+      }
+    });
   };
 
   const [swidth, setSwidth] = useState(500);

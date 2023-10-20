@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import useAuth from "../utility/useAuth"
 
 const MyCart = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {user} = useAuth();
 
   return (
     <div className="bg-gradient-to-r from-pink-500 to-orange-500">

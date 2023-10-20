@@ -74,7 +74,10 @@ const Products = () => {
                         aria-label="Details Button"
                         onClick={() =>
                           navigate(
-                            "/details/" + item.brand_name + "-" + item._id
+                            "/details/" + item.brand_name + "-" + item._id,
+                            {
+                              state: { title: item.name },
+                            }
                           )
                         }
                       >
@@ -87,7 +90,13 @@ const Products = () => {
                         size="sm"
                         onClick={() =>
                           navigate(
-                            "/update-product/" + item.brand_name + "-" + item._id
+                            "/update-product/" +
+                              item.brand_name +
+                              "-" +
+                              item._id,
+                            {
+                              state: { title: item.name },
+                            }
                           )
                         }
                       >

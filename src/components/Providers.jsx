@@ -3,6 +3,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useEffect, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "../router";
+import AuthProvider from "./AuthProvider";
 
 const Providers = () => {
   const [mounted, setMounted] = useState(false);
@@ -16,7 +17,9 @@ const Providers = () => {
   return (
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="system">
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </NextThemesProvider>
     </NextUIProvider>
   );

@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
 import { Input } from "@nextui-org/react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../assets/animations/sign-up.json";
+import useAuth from "../utility/useAuth";
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const [errorMessage, setErrorMessage] = useState("");
+  const { signUp, updateProfile } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,9 +40,9 @@ const SignUp = () => {
       return;
     }
 
-    // signUp(e.target.name.value, e.target.email.value, password)
-    //   .then(() => updateProfile(e.target.name.value, ""))
-    //   .then(() => navigate("/"));
+    signUp(e.target.name.value, e.target.email.value, password)
+      .then(() => updateProfile(e.target.name.value, ""))
+      .then(() => navigate("/"));
   };
 
   const [swidth, setSwidth] = useState(500);
