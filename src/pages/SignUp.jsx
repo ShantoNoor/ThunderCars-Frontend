@@ -8,15 +8,39 @@ import animation from "../assets/animations/sign-up.json";
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSignIn = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
+
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    console.log(name, email, password);
+
+    if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email) == false) {
+      setErrorMessage("Invalid email address");
+      return;
+    }
+
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 charecters!");
+      return;
+    } else if (/.*[A-Z].*/.test(password) == false) {
+      setErrorMessage("Password must contains at least one capital letter!");
+      return;
+    } else if (/.*[^A-Za-z0-9].*/.test(password) == false) {
+      setErrorMessage("Password must contains at least one special character!");
+      return;
+    }
+
+    // signUp(e.target.name.value, e.target.email.value, password)
+    //   .then(() => updateProfile(e.target.name.value, ""))
+    //   .then(() => navigate("/"));
   };
 
   const [swidth, setSwidth] = useState(500);
@@ -51,7 +75,7 @@ const SignUp = () => {
             action=""
             className="space-y-8"
             data-bitwarden-watching="1"
-            onSubmit={handleSignIn}
+            onSubmit={handleSubmit}
           >
             <div className="space-y-1 text-sm mt-6">
               <Input
@@ -96,7 +120,13 @@ const SignUp = () => {
                   </button>
                 }
                 type={isVisible ? "text" : "password"}
+                error={errorMessage !== ""}
               />
+              {errorMessage !== "" && (
+                <p className="text-danger text-md max-w-[250px]">
+                  {errorMessage}
+                </p>
+              )}
               <div className="flex justify-end text-xs dark:text-gray-400">
                 <Link rel="noopener noreferrer" to="/">
                   Forgot Password&nbsp;?

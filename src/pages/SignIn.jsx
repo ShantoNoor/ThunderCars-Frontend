@@ -11,7 +11,7 @@ const SignIn = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const handleSignIn = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -51,7 +51,7 @@ const SignIn = () => {
             action=""
             className="space-y-8"
             data-bitwarden-watching="1"
-            onSubmit={handleSignIn}
+            onSubmit={handleSubmit}
           >
             <div className="space-y-1 text-sm mt-6">
               <Input
