@@ -33,10 +33,6 @@ const Nav = () => {
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
         <NavbarBrand>
           <Logo />
         </NavbarBrand>
@@ -52,6 +48,10 @@ const Nav = () => {
 
       <NavbarContent justify="end">
         <ThemeSwitch />
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
       </NavbarContent>
 
       <NavbarMenu>
