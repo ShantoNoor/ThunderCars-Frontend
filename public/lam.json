@@ -19,7 +19,7 @@
     "name": "Lamborghini Urus",
     "brand_name": "Lamborghini",
     "type": "SUV",
-    "price": "$218,009",
+    "price": 218009,
     "rating": 4.9,
     "short_description": "The Lamborghini Urus combines the spirit of a supercar with the practicality of an SUV."
   },
@@ -28,7 +28,7 @@
     "name": "Lamborghini Huracan",
     "brand_name": "Lamborghini",
     "type": "Sports Car",
-    "price": "$261,274",
+    "price": 261274,
     "rating": 4.8,
     "short_description": "The Lamborghini Huracan is a masterpiece of Italian craftsmanship, offering unmatched performance and style."
   },
@@ -36,8 +36,8 @@
     "image": "https://images.pexels.com/photos/6968984/pexels-photo-6968984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "name": "Lamborghini Aventador",
     "brand_name": "Lamborghini",
-    "type": "Supercar",
-    "price": "$393,695",
+    "type": "Super Car",
+    "price": 393695,
     "rating": 4.7,
     "short_description": "The Lamborghini Aventador is a true icon, setting the standard for high-performance supercars."
   },
@@ -45,11 +45,9 @@
     "image": "https://images.pexels.com/photos/9814981/pexels-photo-9814981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "name": "Lamborghini Veneno",
     "brand_name": "Lamborghini",
-    "type": "Hypercar",
-    "price": "$4.5 million",
+    "type": "Hyper Car",
+    "price": 450000000,
     "rating": 4.9,
     "short_description": "The Lamborghini Veneno is an ultra-rare hypercar that pushes the limits of speed and design."
   }
 ]
-
-image, name, brand_name, type, price, rating, short_description

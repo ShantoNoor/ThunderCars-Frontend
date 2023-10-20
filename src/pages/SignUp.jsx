@@ -20,7 +20,6 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(name, email, password);
 
     if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email) == false) {
       setErrorMessage("Invalid email address");

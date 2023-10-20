@@ -2,8 +2,8 @@ import { Card, CardFooter, Image } from "@nextui-org/react";
 
 const data = JSON.parse(`[
   {
-    "name": "Toyota",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Toyota_EU.svg/2560px-Toyota_EU.svg.png"
+    "name": "Tesla",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png"
   },
   {
     "name": "Lamborghini",
@@ -22,8 +22,8 @@ const data = JSON.parse(`[
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/567px-Mercedes-Logo.svg.png"
   },
   {
-    "name": "Tesla",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png"
+    "name": "Toyota",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Toyota_EU.svg/2560px-Toyota_EU.svg.png"
   }
 ]
 `);

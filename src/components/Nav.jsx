@@ -22,12 +22,16 @@ const Nav = () => {
       to: "/",
     },
     {
-      text: "Sign In",
-      to: "/sign-in",
+      text: "Add Product",
+      to: "/add-product",
     },
     {
-      text: "Sign Up",
-      to: "/sign-up",
+      text: "My Cart",
+      to: "/my-cart",
+    },
+    {
+      text: "Sign In",
+      to: "/sign-in",
     },
   ];
 
@@ -44,7 +48,7 @@ const Nav = () => {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarContent className="hidden sm:flex gap-4" justify="end">
+        <NavbarContent className="hidden sm:flex" justify="end">
           {menuItems.map((item, index) => (
             <NavbarItem key={index}>
               <NavLink info={item} />
