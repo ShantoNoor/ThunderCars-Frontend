@@ -1,6 +1,10 @@
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -8,9 +12,16 @@ const AddProduct = () => {
     const brand_name = form.brand_name.value;
     const brand_image = form.brand_image.value;
     const type = form.type.value;
-    const price = parseInt(form.price.value);
-    const rating = parseFloat(form.rating.value);
     const short_description = form.short_description.value;
+    let price = parseInt(form.price.value);
+    let rating = parseFloat(form.rating.value);
+
+    try {
+      price = parseInt(form.price.value);
+      rating = parseFloat(form.rating.value);
+    } catch (err) {
+      console.error(err);
+    }
 
     // console.log(name, brand_name, type, brand_image, price, rating, short_description);
 
@@ -29,8 +40,18 @@ const AddProduct = () => {
         short_description,
       }),
     })
-      .then((res) => {
-        console.log(res);
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Car successfully added to the database.");
+          navigate("/products/" + brand_name, {
+            state: {
+              title: brand_name,
+            },
+          });
+        } else {
+          toast.error("Something went wrong unable to add car the database.");
+        }
       })
       .catch((err) => console.error(err));
   };

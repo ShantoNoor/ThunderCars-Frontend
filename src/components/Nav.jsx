@@ -14,6 +14,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import Logo from "./Logo";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../utility/useAuth";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +65,9 @@ const Nav = () => {
     >
       <NavbarContent>
         <NavbarBrand>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -88,7 +91,9 @@ const Nav = () => {
               color="primary"
               src={user.photoURL}
             />
-            <NavbarItem className="text-primary font-bold hidden lg:inline">{user.displayName}</NavbarItem>
+            <NavbarItem className="text-primary font-bold hidden lg:inline">
+              {user.displayName}
+            </NavbarItem>
           </>
         )}
         <ThemeSwitch />

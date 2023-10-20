@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../assets/animations/sign-up.json";
 import useAuth from "../utility/useAuth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,17 +27,21 @@ const SignUp = () => {
 
     if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email) == false) {
       setErrorMessage("Invalid email address");
+      toast.error("Invalid email address")
       return;
     }
 
     if (password.length < 6) {
       setErrorMessage("Password must be at least 6 charecters!");
+      toast.error("Password must be at least 6 charecters!")
       return;
     } else if (/.*[A-Z].*/.test(password) == false) {
       setErrorMessage("Password must contains at least one capital letter!");
+      toast.error("Password must contains at least one capital letter!")
       return;
     } else if (/.*[^A-Za-z0-9].*/.test(password) == false) {
       setErrorMessage("Password must contains at least one special character!");
+      toast.error("Password must contains at least one special character!");
       return;
     }
 

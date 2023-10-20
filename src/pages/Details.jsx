@@ -3,10 +3,13 @@ import { BiStar, BiDollar, BiCartAdd } from "react-icons/bi";
 import { Button, Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import getUrl from "../utility/getUrl";
+import useAuth from "../utility/useAuth";
+import toast from "react-hot-toast";
 
 const Details = () => {
   const [carData, setCarData] = useState({});
   const params = useParams();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetch(getUrl() + "details/" + params.id)
@@ -16,6 +19,28 @@ const Details = () => {
       })
       .catch((err) => console.error(err));
   }, []);
+
+  const handleAddToCart = (data) => {
+    fetch("http://localhost:3000/" + "carts/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        email: user.email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Car successfully added to Cart.");
+        } else {
+          toast.error("Something went wrong unable to add car Cart.");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="p-5 md:p-10 mx-auto dark:bg-black dark:text-white">
@@ -52,7 +77,10 @@ const Details = () => {
                 {carData.price}
               </span>
             </div>
-            <Button className="flex items-center bg-primary text-white">
+            <Button
+              onClick={() => handleAddToCart(carData)}
+              className="flex items-center bg-primary text-white"
+            >
               <BiCartAdd className="text-danger" />
               Add to Cart
             </Button>
