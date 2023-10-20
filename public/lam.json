@@ -1,0 +1,55 @@
+[
+  {
+    "text": "Drive the Lamborghini Huracan – an Italian masterpiece of style and performance.",
+    "image": "https://images.pexels.com/photos/17317369/pexels-photo-17317369/free-photo-of-close-up-of-lamborghini-huracan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "type": "ad"
+  },
+  {
+    "text": "Elevate your journey with the iconic Lamborghini Aventador – the standard for high-performance supercars.",
+    "image": "https://images.pexels.com/photos/4194021/pexels-photo-4194021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "type": "ad"
+  },
+  {
+    "text": "Experience the Lamborghini Veneno – an ultra-rare hypercar that pushes the limits of speed and design.",
+    "image": "https://images.pexels.com/photos/7537127/pexels-photo-7537127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "type": "ad"
+  },
+  {
+    "image": "https://images.pexels.com/photos/18509922/pexels-photo-18509922/free-photo-of-lady-in-blue-can-you-guess-the-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "name": "Lamborghini Urus",
+    "brand_name": "Lamborghini",
+    "type": "SUV",
+    "price": "$218,009",
+    "rating": 4.9,
+    "short_description": "The Lamborghini Urus combines the spirit of a supercar with the practicality of an SUV."
+  },
+  {
+    "image": "https://images.pexels.com/photos/17632045/pexels-photo-17632045/free-photo-of-orange-lamborghini-huracan-sports-car-standing-on-pads.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "name": "Lamborghini Huracan",
+    "brand_name": "Lamborghini",
+    "type": "Sports Car",
+    "price": "$261,274",
+    "rating": 4.8,
+    "short_description": "The Lamborghini Huracan is a masterpiece of Italian craftsmanship, offering unmatched performance and style."
+  },
+  {
+    "image": "https://images.pexels.com/photos/6968984/pexels-photo-6968984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "name": "Lamborghini Aventador",
+    "brand_name": "Lamborghini",
+    "type": "Supercar",
+    "price": "$393,695",
+    "rating": 4.7,
+    "short_description": "The Lamborghini Aventador is a true icon, setting the standard for high-performance supercars."
+  },
+  {
+    "image": "https://images.pexels.com/photos/9814981/pexels-photo-9814981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "name": "Lamborghini Veneno",
+    "brand_name": "Lamborghini",
+    "type": "Hypercar",
+    "price": "$4.5 million",
+    "rating": 4.9,
+    "short_description": "The Lamborghini Veneno is an ultra-rare hypercar that pushes the limits of speed and design."
+  }
+]
+
+image, name, brand_name, type, price, rating, short_description

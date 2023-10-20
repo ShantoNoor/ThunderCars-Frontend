@@ -1,6 +1,7 @@
 import { MotionConfig, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { Image } from "@nextui-org/react";
 
 const Slider = ({ images, texts }) => {
   const [current, setCurrent] = useState(0);
@@ -85,7 +86,7 @@ const Slider = ({ images, texts }) => {
                 }}
                 className="relative"
               >
-                <img
+                <Image
                   src={image}
                   alt={image}
                   loading="lazy"
@@ -98,9 +99,9 @@ const Slider = ({ images, texts }) => {
                   }}
                 />
                 {texts && (
-                  <div className="absolute top-5 md:top-10 left-5 md:left-5">
+                  <div className="absolute text-center top-5 md:top-10 left-5 md:left-10 z-10">
                     <span className="relative flex-shrink-0 w-3 h-3 rounded-full bg-violet-400">
-                      <span className="absolute flex-shrink-0 w-4 h-4 rounded-full -left-1 -top-1 animate-ping bg-violet-400"></span>
+                      <span className="absolute flex-shrink-0 w-4 h-4 rounded-full -left-1 -top-1 lg:-top-5 animate-ping bg-violet-400"></span>
                     </span>
                     <span className="text-md box-decoration-clone md:text-3xl font-bold bg-danger text-white opacity-75 px-2 py-1 text-center rounded-md">
                       {texts[id % texts.length]}
