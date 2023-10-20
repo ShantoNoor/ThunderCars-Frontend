@@ -1,11 +1,30 @@
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import getUrl from "../utility/getUrl";
 
 const UpdateProduct = () => {
+  const ref = useRef({});
+  const [carData, setCarData] = useState({});
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(getUrl() + "details/" + params.id)
+      .then((res) => res.json())
+      .then((data) => {
+        setCarData(data);
+        ref.current = data;
+        console.log(ref)
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  console.log(carData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const brand_name = form.brand_name.value;
     const brand_image = form.brand_image.value;
     const type = form.type.value;
     const price = parseInt(form.price.value);
@@ -21,7 +40,6 @@ const UpdateProduct = () => {
       },
       body: JSON.stringify({
         name,
-        brand_name,
         type,
         brand_image,
         price,
@@ -61,35 +79,24 @@ const UpdateProduct = () => {
             </div>
             <div className="col-span-full">
               <Input
-                label="Short short_description"
+                // label="Short short_description"
                 name="short_description"
                 variant="bordered"
-                labelPlacement="outside"
-                isRequired={true}
+                // labelPlacement="outside"
+                // isRequired={true}
                 fullWidth={true}
+                defaultValuevalue={`${carData.short_description}`}
               />
             </div>
             <div className="col-span-full sm:col-span-3">
-              <Select
+              <Input
                 label="Brand Name"
                 className="max-w-xs"
                 labelPlacement={"outside"}
                 name="brand_name"
                 isRequired={true}
-              >
-                {[
-                  "Tesla",
-                  "Lamborghini",
-                  "Bugatti",
-                  "BMW",
-                  "Mercedes-Benz",
-                  "Toyota",
-                ].map((brand) => (
-                  <SelectItem key={brand} value={brand}>
-                    {brand}
-                  </SelectItem>
-                ))}
-              </Select>
+                isDisabled={true}
+              />
             </div>
             <div className="col-span-full sm:col-span-3">
               <Input

@@ -63,7 +63,6 @@ const Products = () => {
                     alt="Card background"
                     className="object-cover rounded-xl h-[170px] w-[260px]"
                     src={item.image}
-                    
                   />
                 </CardBody>
                 <CardFooter>
@@ -86,6 +85,11 @@ const Products = () => {
                         variant="faded"
                         aria-label="Update Button"
                         size="sm"
+                        onClick={() =>
+                          navigate(
+                            "/update-product/" + item.brand_name + "-" + item._id
+                          )
+                        }
                       >
                         <BiEdit /> Update
                       </Button>
