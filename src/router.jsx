@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import AddProduct from "./pages/AddProduct";
 import MyCart from "./pages/MyCart";
 import Products from "./pages/Products";
-import getUrl from "./utility/getUrl";
 import Details from "./pages/Details";
 
 const router = createBrowserRouter([
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <Products />,
-        loader: ({ params }) =>
-          fetch(getUrl() + "products/" + params.id)
-            .then((res) => res.json())
-            .catch((err) => console.error(err)),
       },
       {
         path: "/details/:id",

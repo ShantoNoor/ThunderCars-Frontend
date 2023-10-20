@@ -1,33 +1,27 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import getUrl from "../utility/getUrl";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { BiStar, BiDollar, BiCartAdd } from "react-icons/bi";
-import { Button } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import getUrl from "../utility/getUrl";
 
 const Details = () => {
-  const { id } = useParams();
-  const [cname, _id] = id.split("-");
-
   const [carData, setCarData] = useState({});
+  const params = useParams();
 
   useEffect(() => {
-    fetch(getUrl() + "products/" + cname)
+    fetch(getUrl() + "details/" + params.id)
       .then((res) => res.json())
       .then((data) => {
-        setCarData(data.find((item) => item._id === _id));
+        setCarData(data);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div className="p-5 mx-auto sm:p-10 md:p-16 dark:bg-gray-800 dark:text-gray-100">
+    <div className="p-5 md:p-10 mx-auto dark:bg-black dark:text-white">
       <div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
-        <img
-          src={carData.image}
-          alt=""
-          className="w-full h-60 sm:h-96 dark:bg-gray-500"
-        />
-        <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-white dark:bg-gray-900">
+        <Image src={carData.image} loading={"lazy"} />
+        <div className="p-6 pb-12 m-4 mx-auto -mt-16 md:-mt-20 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md z-10 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
           <div className="space-y-2">
             <Link
               rel="noopener noreferrer"
@@ -36,7 +30,7 @@ const Details = () => {
             >
               {carData.short_description}
             </Link>
-            <p className="text-xs dark:text-gray-400">
+            <p className="text-xs dark:text-white">
               <Link
                 rel="noopener noreferrer"
                 to="/"
@@ -46,7 +40,7 @@ const Details = () => {
               </Link>
             </p>
           </div>
-          <div className="dark:text-gray-100 flex flex-col gap-2 md:flex-row justify-between items-end">
+          <div className="dark:text-white flex flex-col gap-2 md:flex-row justify-between items-end">
             <p>{carData.name}</p>
             <div className="flex gap-2 items-center text-lg">
               <span className="flex gap-1 items-center">
@@ -58,7 +52,7 @@ const Details = () => {
                 {carData.price}
               </span>
             </div>
-            <Button className="flex items-center">
+            <Button className="flex items-center bg-primary text-white">
               <BiCartAdd className="text-danger" />
               Add to Cart
             </Button>

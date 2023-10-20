@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import Slider from "../components/Slider";
 import {
   Card,
@@ -11,16 +11,23 @@ import {
 } from "@nextui-org/react";
 import { BiEdit, BiArrowToRight, BiStar, BiDollar } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import getUrl from "../utility/getUrl";
 
 const Products = () => {
-  const data = useLoaderData();
   const [brandCarData, setBrandCarData] = useState([]);
   const [bannerData, setBannerData] = useState([]);
-  useEffect(() => {
-    setBrandCarData(data.filter((item) => item.type !== "ad"));
-    setBannerData(data.filter((item) => item.type === "ad"));
-  }, []);
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(getUrl() + "products/" + id)
+      .then((res) => res.json())
+      .then((data) => {
+        setBrandCarData(data.filter((item) => item.type !== "ad"));
+        setBannerData(data.filter((item) => item.type === "ad"));
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>

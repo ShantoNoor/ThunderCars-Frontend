@@ -1,6 +1,6 @@
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 
-const AddProduct = () => {
+const UpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -167,4 +167,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

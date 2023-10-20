@@ -30,7 +30,7 @@ const Slider = ({ data }) => {
       clearInterval(sliderInterval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+  }, [current, data]);
 
   useEffect(() => {
     const handleWindowResize = () => {
