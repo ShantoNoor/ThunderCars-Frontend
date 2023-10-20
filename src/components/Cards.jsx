@@ -50,6 +50,7 @@ const Cards = () => {
                   <Image
                     className="p-10 h-[300px] w-[300px] object-contain"
                     src={item.image}
+                    loading="lazy"
                   />
                   <CardFooter className="before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
                     <p className="text-3xl text-white/80">{item.name}</p>
