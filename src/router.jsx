@@ -3,6 +3,7 @@ import ErrorPage from "./pages/ErrorPage";
 import App from "./App";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import SignOut from "./pages/SignOut";
 import Home from "./pages/Home";
 import AddProduct from "./pages/AddProduct";
 import MyCart from "./pages/MyCart";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/sign-out",
+        element: <SignOut />,
       },
       {
         path: "/add-product",

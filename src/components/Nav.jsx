@@ -6,17 +6,20 @@ import {
   NavbarMenuToggle,
   NavbarMenuItem,
   NavbarMenu,
+  Avatar,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavLink from "./NavLink";
 import ThemeSwitch from "./ThemeSwitch";
 import Logo from "./Logo";
 import SocialLogin from "./SocialLogin";
+import useAuth from "../utility/useAuth";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState([]);
 
-  const menuItems = [
+  const commonMenus = [
     {
       text: "Home",
       to: "/",
@@ -29,11 +32,29 @@ const Nav = () => {
       text: "My Cart",
       to: "/my-cart",
     },
+  ];
+
+  const notLoginMenus = [
     {
       text: "Sign In",
       to: "/sign-in",
     },
   ];
+
+  const loginMenus = [
+    {
+      text: "Sign Out",
+      to: "/sign-out",
+    },
+  ];
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    user
+      ? setMenuItems([...commonMenus, ...loginMenus])
+      : setMenuItems([...commonMenus, ...notLoginMenus]);
+  }, [user]);
 
   return (
     <Navbar
@@ -55,7 +76,21 @@ const Nav = () => {
             </NavbarItem>
           ))}
         </NavbarContent>
-        <SocialLogin />
+        {user === null ? (
+          <SocialLogin />
+        ) : (
+          <>
+            <Avatar
+              size="sm"
+              showFallback
+              name={user.displayName[0].toUpperCase()}
+              isBordered
+              color="primary"
+              src={user.photoURL}
+            />
+            <NavbarItem className="text-primary font-bold hidden lg:inline">{user.displayName}</NavbarItem>
+          </>
+        )}
         <ThemeSwitch />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
