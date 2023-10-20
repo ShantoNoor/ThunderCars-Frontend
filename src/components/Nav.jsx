@@ -31,7 +31,7 @@ const Nav = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar maxWidth={"xl"} shouldHideOnScroll={true} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarBrand>
           <Logo />

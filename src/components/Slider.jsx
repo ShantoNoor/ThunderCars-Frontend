@@ -5,7 +5,7 @@ import { Image } from "@nextui-org/react";
 
 const Slider = ({ images, texts }) => {
   const [current, setCurrent] = useState(0);
-  const [width, setWidth] = useState(1024);
+  const [width, setWidth] = useState(1280);
   const [imageWidth, setImageWidth] = useState(0);
 
   const onPrevClick = () => {
@@ -35,7 +35,7 @@ const Slider = ({ images, texts }) => {
   useEffect(() => {
     const handleWindowResize = () => {
       if (imageWidth && window.innerWidth)
-        setWidth(Math.min(1024, imageWidth, window.innerWidth));
+        setWidth(Math.min(1280, imageWidth, window.innerWidth));
     };
     handleWindowResize();
 

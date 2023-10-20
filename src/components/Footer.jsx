@@ -127,7 +127,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-400">
-        © 2018 Thunder Cars. All rights reserved.
+        © 2000 Thunder Cars. All rights reserved.
       </div>
     </footer>
   );
