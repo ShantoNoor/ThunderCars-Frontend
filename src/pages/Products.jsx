@@ -10,6 +10,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { BiEdit, BiArrowToRight, BiStar, BiDollar } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const data = useLoaderData();
@@ -19,8 +20,7 @@ const Products = () => {
     setBrandCarData(data.filter((item) => item.type !== "ad"));
     setBannerData(data.filter((item) => item.type === "ad"));
   }, []);
-
-  console.log(bannerData, brandCarData);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -53,6 +53,11 @@ const Products = () => {
                         isIconOnly
                         color="danger"
                         aria-label="Details Button"
+                        onClick={() =>
+                          navigate(
+                            "/details/" + item.brand_name + "-" + item._id
+                          )
+                        }
                       >
                         <BiArrowToRight />
                       </Button>
@@ -115,7 +120,7 @@ const Products = () => {
             </p>
             <Link
               rel="noopener noreferrer"
-              to='/'
+              to="/"
               className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
             >
               Back to homepage
