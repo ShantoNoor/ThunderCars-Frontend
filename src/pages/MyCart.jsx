@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../utility/useAuth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import getUrl from "../utility/getUrl";
 
 const MyCart = () => {
   const navigate = useNavigate();
@@ -9,13 +10,28 @@ const MyCart = () => {
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/" + "carts/" + user.email)
+    fetch(getUrl() + "carts/" + user.email)
       .then((res) => res.json())
       .then((data) => {
         setCartData(data);
       })
       .catch((err) => console.error(err));
   }, []);
+
+  const handleDelete = (id) => {
+    const complexId = user.email + "-" + id;
+    fetch(getUrl() + "carts/" + complexId, { method: "DELETE" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount === 1) {
+          toast.success("Delete successful.");
+          setCartData(cartData.filter((item) => item._id !== id));
+        } else {
+          toast.error("There is an error unable to delete.");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="bg-gradient-to-r from-pink-500 to-orange-500">
@@ -24,7 +40,10 @@ const MyCart = () => {
         <ul className="flex flex-col divide-y divide-gray-700">
           {/*  */}
           {cartData.map((item) => (
-            <li key={item._id} className="flex flex-col py-6 sm:flex-row sm:justify-between">
+            <li
+              key={item._id}
+              className="flex flex-col py-6 sm:flex-row sm:justify-between"
+            >
               <div className="flex w-full space-x-2 sm:space-x-4">
                 <img
                   className="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500"
@@ -46,6 +65,7 @@ const MyCart = () => {
                     <button
                       type="button"
                       className="flex items-center px-2 py-1 pl-0 space-x-1"
+                      onClick={() => handleDelete(item._id)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
