@@ -4,11 +4,11 @@ const Subscribe = () => {
   const { theme } = useTheme();
   return (
     <div
-      className="w-full dark:bg-gray-500"
+      className="w-full bg-zinc-700 dark:bg-zinc-300"
       style={{
         backgroundImage: "url(https://source.unsplash.com/random/640x480)",
         backgroundPosition: "center center",
-        backgroundBlendMode: theme == "dark" ? "multiply" : "color",
+        backgroundBlendMode: theme == "dark" ? "multiply" : "screen",
         backgroundSize: "cover",
       }}
     >

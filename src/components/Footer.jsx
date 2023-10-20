@@ -25,11 +25,6 @@ const Footer = () => {
               </li>
               <li>
                 <Link rel="noopener noreferrer" to="/">
-                  Integrations
-                </Link>
-              </li>
-              <li>
-                <Link rel="noopener noreferrer" to="/">
                   Pricing
                 </Link>
               </li>
@@ -56,21 +51,21 @@ const Footer = () => {
             </ul>
           </div>
           <div className="space-y-3">
-            <h3 className="uppercase dark:text-gray-50">Developers</h3>
+            <h3 className="uppercase dark:text-gray-50">Quick links</h3>
             <ul className="space-y-1">
               <li>
                 <Link rel="noopener noreferrer" to="/">
-                  Public API
+                  Lamborghini
                 </Link>
               </li>
               <li>
                 <Link rel="noopener noreferrer" to="/">
-                  Documentation
+                  Tesla
                 </Link>
               </li>
               <li>
                 <Link rel="noopener noreferrer" to="/">
-                  Guides
+                  Mercedes-Benz
                 </Link>
               </li>
             </ul>

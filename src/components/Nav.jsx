@@ -11,6 +11,7 @@ import { useState } from "react";
 import NavLink from "./NavLink";
 import ThemeSwitch from "./ThemeSwitch";
 import Logo from "./Logo";
+import SocialLogin from "./SocialLogin";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,22 +32,26 @@ const Nav = () => {
   ];
 
   return (
-    <Navbar maxWidth={"xl"} shouldHideOnScroll={true} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      maxWidth={"xl"}
+      shouldHideOnScroll={true}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarBrand>
           <Logo />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item, index) => (
-          <NavbarItem key={index}>
-            <NavLink info={item} />
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-
       <NavbarContent justify="end">
+        <NavbarContent className="hidden sm:flex gap-4" justify="end">
+          {menuItems.map((item, index) => (
+            <NavbarItem key={index}>
+              <NavLink info={item} />
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+        <SocialLogin />
         <ThemeSwitch />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

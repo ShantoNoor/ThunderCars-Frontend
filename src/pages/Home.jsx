@@ -3,6 +3,7 @@ import Slider from "../components/Slider";
 import Features from "../components/Features";
 import Statistics from "../components/Statistics";
 import Subscribe from "../components/Subscribe";
+import Cards from "../components/Cards";
 
 const cars = [
   "https://images.pexels.com/photos/18509922/pexels-photo-18509922/free-photo-of-lady-in-blue-can-you-guess-the-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -53,6 +54,7 @@ const Home = () => {
   return (
     <>
       <Slider images={width > 640 ? uil : uis} texts={texts} />
+      <Cards />
       <Features />
       <Statistics />
       <Subscribe />
