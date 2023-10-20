@@ -8,6 +8,7 @@ import AddProduct from "./pages/AddProduct";
 import MyCart from "./pages/MyCart";
 import Products from "./pages/Products";
 import Details from "./pages/Details";
+import UpdateProduct from "./pages/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "/update-product",
+        element: <UpdateProduct />,
       },
       {
         path: "/my-cart",

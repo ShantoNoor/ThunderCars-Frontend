@@ -36,49 +36,16 @@ const Products = () => {
         <div className="flex justify-center items-center flex-col md:flex-row gap-3 my-10 flex-wrap container mx-auto">
           {brandCarData.map((item, idx) => {
             return (
-              <Card key={idx} className="py-4 h-[350px]">
+              <Card key={idx} className="py-4 ">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">
-                    {item.brand_name}
-                  </p>
-                  <small className="text-default-500">{item.type}</small>
-                  <h4 className="font-bold text-large">{item.name}</h4>
-                </CardHeader>
-                <CardBody className="overflow-visible py-2">
-                  <Image
-                    alt="Card background"
-                    className="object-fill rounded-xl"
-                    src={item.image}
-                    width={270}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <div className="flex gap-2 items-center justify-between w-full">
-                    <div className="flex gap-2 items-center">
-                      <Button
-                        size="sm"
-                        isIconOnly
-                        color="danger"
-                        aria-label="Details Button"
-                        onClick={() =>
-                          navigate(
-                            "/details/" + item.brand_name + "-" + item._id
-                          )
-                        }
-                      >
-                        <BiArrowToRight />
-                      </Button>
-                      <Button
-                        isIconOnly
-                        color="warning"
-                        variant="faded"
-                        aria-label="Update Button"
-                        size="sm"
-                      >
-                        <BiEdit />
-                      </Button>
+                  <div className="flex items-start w-full justify-between">
+                    <div className="flex flex-col justify-start items-start text-lg">
+                      <p className="text-tiny uppercase font-bold">
+                        {item.brand_name}
+                      </p>
+                      <small className="text-default-500">{item.type}</small>
                     </div>
-                    <div className="flex gap-2 items-center text-lg">
+                    <div className="flex flex-col justify-end items-end text-lg">
                       <span className="flex gap-1 items-center">
                         <BiStar className="text-warning " />
                         {item.rating}
@@ -87,6 +54,41 @@ const Products = () => {
                         <BiDollar className="text-danger" />
                         {item.price}
                       </span>
+                    </div>
+                  </div>
+                  <h4 className="font-bold text-large">{item.name}</h4>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2">
+                  <Image
+                    alt="Card background"
+                    className="object-cover rounded-xl h-[170px] w-[260px]"
+                    src={item.image}
+                    
+                  />
+                </CardBody>
+                <CardFooter>
+                  <div className="w-full">
+                    <div className="flex gap-2 items-center">
+                      <Button
+                        size="sm"
+                        color="danger"
+                        aria-label="Details Button"
+                        onClick={() =>
+                          navigate(
+                            "/details/" + item.brand_name + "-" + item._id
+                          )
+                        }
+                      >
+                        <BiArrowToRight /> Details
+                      </Button>
+                      <Button
+                        color="warning"
+                        variant="faded"
+                        aria-label="Update Button"
+                        size="sm"
+                      >
+                        <BiEdit /> Update
+                      </Button>
                     </div>
                   </div>
                 </CardFooter>
