@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import getUrl from "../utility/getUrl";
 import useAuth from "../utility/useAuth";
 import toast from "react-hot-toast";
-import Spinner from "../components/Spinner"
+import Spinner from "../components/Spinner";
 
 const Details = () => {
   const [carData, setCarData] = useState({});
@@ -20,7 +20,10 @@ const Details = () => {
         setCarData(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   }, []);
 
   const handleAddToCart = (data) => {
@@ -42,7 +45,10 @@ const Details = () => {
           toast.error("Something went wrong unable to add car Cart.");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   };
 
   return (

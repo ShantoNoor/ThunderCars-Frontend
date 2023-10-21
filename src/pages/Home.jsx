@@ -6,6 +6,7 @@ import Subscribe from "../components/Subscribe";
 import Cards from "../components/Cards";
 import Spinner from "../components/Spinner";
 import getUrl from "../utility/getUrl";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [width, setWidth] = useState(0);
@@ -20,9 +21,12 @@ const Home = () => {
       .then((data) => {
         setBrandData(data.filter((brand) => brand.type === "brand"));
         setBannerData(data.find((item) => item.size === "large").ads);
-        setLoading(false)
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   }, []);
 
   useEffect(() => {
@@ -39,8 +43,14 @@ const Home = () => {
 
   return (
     <>
-      {loading ? (<Spinner />) : (<><Slider data={bannerData} />
-      <Cards data={brandData} /></>)}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Slider data={bannerData} />
+          <Cards data={brandData} />
+        </>
+      )}
       <Features />
       <Statistics />
       <Subscribe />

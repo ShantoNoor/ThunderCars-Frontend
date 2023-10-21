@@ -13,6 +13,7 @@ import { BiEdit, BiArrowToRight, BiStar, BiDollar } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import getUrl from "../utility/getUrl";
 import Spinner from "../components/Spinner";
+import toast from "react-hot-toast";
 
 const Products = () => {
   const [brandCarData, setBrandCarData] = useState([]);
@@ -29,7 +30,10 @@ const Products = () => {
         setBannerData(data.filter((item) => item.type === "ad"));
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   }, []);
 
   return (

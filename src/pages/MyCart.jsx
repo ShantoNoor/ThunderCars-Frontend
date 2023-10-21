@@ -18,7 +18,10 @@ const MyCart = () => {
         setCartData(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   }, []);
 
   const handleDelete = (id) => {
@@ -33,7 +36,10 @@ const MyCart = () => {
           toast.error("There is an error unable to delete.");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
   };
 
   return (

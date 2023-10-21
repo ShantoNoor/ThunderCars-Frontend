@@ -14,15 +14,8 @@ const AddProduct = () => {
     const image = form.image.value;
     const type = form.type.value;
     const short_description = form.short_description.value;
-    let price = parseInt(form.price.value);
-    let rating = parseFloat(form.rating.value);
-
-    try {
-      price = parseInt(form.price.value);
-      rating = parseFloat(form.rating.value);
-    } catch (err) {
-      console.error(err);
-    }
+    const price = form.price.value;
+    const rating = form.rating.value;
 
     fetch(getUrl() + "products/", {
       method: "POST",
@@ -42,17 +35,20 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          toast.success("Car successfully added to the database.");
+          toast.success("Car successfully added!.");
           navigate("/products/" + brand_name, {
             state: {
               title: brand_name,
             },
           });
         } else {
-          toast.error("Something went wrong unable to add car the database.");
+          toast.error("Something went wrong unable to add car.");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message);
+      });
   };
   return (
     <section className="p-6 dark:bg-black dark:text-white">
@@ -62,10 +58,10 @@ const AddProduct = () => {
       >
         <fieldset className="grid grid-cols-4 gap-6 p-12 rounded-md shadow-sm dark:bg-black">
           <div className="space-y-2 col-span-full lg:col-span-1">
-            <p className="font-medium">Personal Inormation</p>
+            <p className="font-medium">Add Product</p>
             <p className="text-xs">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
-              fuga autem eum!
+              Set all the fields carefully. Before, adding make sure that you
+              set everything correctly
             </p>
           </div>
           <div className="grid grid-cols-6 gap-10 col-span-full lg:col-span-3">
