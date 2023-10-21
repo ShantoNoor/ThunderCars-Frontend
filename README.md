@@ -1,8 +1,19 @@
-# React + Vite
+# Thunder Cars
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Link 
 
-Currently, two official plugins are available:
+### https://thunder-cars.web.app/
+### https://thunder-cars.firebaseapp.com/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## About Thunder Cars
+
+- Thunder Car is a Car shop selling different from different brands
+- Project is using `react-dom-router` for dynamic routing
+- Leveraging the power of `React`, project is structured with easy maintainable components friendly design
+- Project is using `TailWindCSS` for stying
+- Component library named `NextUI` and `Mamba UI` is used to create the components
+- Users can SignIn with `Google` and `GitHub` 
+
+## Server Link
+
+### https://thunder-cars-server.vercel.app/
