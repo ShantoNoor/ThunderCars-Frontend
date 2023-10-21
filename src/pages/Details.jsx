@@ -21,7 +21,7 @@ const Details = () => {
   }, []);
 
   const handleAddToCart = (data) => {
-    fetch("http://localhost:3000/" + "carts/", {
+    fetch(getUrl() + "carts/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../utility/useAuth";
 import Spinner from "./Spinner";
+import { useEffect } from "react";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();

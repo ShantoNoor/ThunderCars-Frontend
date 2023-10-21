@@ -1,6 +1,7 @@
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import getUrl from "../utility/getUrl";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const AddProduct = () => {
 
     // console.log(name, brand_name, type, brand_image, price, rating, short_description);
 
-    fetch("http://localhost:3000/" + "products/", {
+    fetch(getUrl() + "products/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

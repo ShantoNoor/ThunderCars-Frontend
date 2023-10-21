@@ -22,7 +22,7 @@ const SocialLogin = () => {
         aria-label="Log in with Google"
         className="rounded-md"
         onClick={() => {
-          githubPopUp().then(() => redirectAfterLogin());
+          googlePopUp().then(() => redirectAfterLogin());
         }}
       >
         <svg

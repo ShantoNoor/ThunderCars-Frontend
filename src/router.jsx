@@ -1,16 +1,19 @@
+import { Spinner } from "@nextui-org/react";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "./pages/ErrorPage";
-import App from "./App";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import SignOut from "./pages/SignOut";
-import Home from "./pages/Home";
-import AddProduct from "./pages/AddProduct";
-import MyCart from "./pages/MyCart";
-import Products from "./pages/Products";
-import Details from "./pages/Details";
-import UpdateProduct from "./pages/UpdateProduct";
-import PrivateRoute from "./components/PrivateRoute";
+
+const App = lazy(() => import("./App"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const SignOut = lazy(() => import("./pages/SignOut"));
+const Home = lazy(() => import("./pages/Home"));
+const AddProduct = lazy(() => import("./pages/AddProduct"));
+const MyCart = lazy(() => import("./pages/MyCart"));
+const Products = lazy(() => import("./pages/Products"));
+const Details = lazy(() => import("./pages/Details"));
+const UpdateProduct = lazy(() => import("./pages/UpdateProduct"));
+const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 
 const router = createBrowserRouter([
   {
@@ -37,25 +40,31 @@ const router = createBrowserRouter([
       {
         path: "/add-product",
         element: (
-          <PrivateRoute>
-            <AddProduct />
-          </PrivateRoute>
+          <Suspense fallback={<Spinner />}>
+            <PrivateRoute>
+              <AddProduct />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: "/update-product/:id",
         element: (
-          <PrivateRoute>
-            <UpdateProduct />
-          </PrivateRoute>
+          <Suspense fallback={<Spinner />}>
+            <PrivateRoute>
+              <UpdateProduct />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: "/my-cart",
         element: (
-          <PrivateRoute>
-            <MyCart />
-          </PrivateRoute>
+          <Suspense fallback={<Spinner />}>
+            <PrivateRoute>
+              <MyCart />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
@@ -65,9 +74,11 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: (
-          <PrivateRoute>
-            <Details />
-          </PrivateRoute>
+          <Suspense fallback={<Spinner />}>
+            <PrivateRoute>
+              <Details />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
     ],

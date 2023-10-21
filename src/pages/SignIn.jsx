@@ -1,11 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
-import { Input } from "@nextui-org/react";
+import { Input, Spinner } from "@nextui-org/react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-import animation from "../assets/animations/sign-in.json";
+import { Suspense, lazy, useEffect, useState } from "react";
 import useAuth from "../utility/useAuth";
+
+const Player = lazy(() =>
+  import("@lottiefiles/react-lottie-player").then((module) => {
+    return { default: module.Player };
+  })
+);
 
 const SignIn = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,12 +55,14 @@ const SignIn = () => {
       <h1 className="text-2xl font-bold text-center">Sign In</h1>
       <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-3 p-8 rounded-xl">
         <div>
-          <Player
-            autoplay
-            loop
-            src={animation}
-            style={{ height: swidth, width: swidth }}
-          ></Player>
+          <Suspense fallback={<Spinner />}>
+            <Player
+              autoplay
+              loop
+              src="/sign-in.json"
+              style={{ height: swidth, width: swidth }}
+            ></Player>
+          </Suspense>
         </div>
         <div className="space-y-3 ">
           <form
