@@ -11,7 +11,7 @@ const AddProduct = () => {
     const form = e.target;
     const name = form.name.value;
     const brand_name = form.brand_name.value;
-    const brand_image = form.brand_image.value;
+    const image = form.image.value;
     const type = form.type.value;
     const short_description = form.short_description.value;
     let price = parseInt(form.price.value);
@@ -24,8 +24,6 @@ const AddProduct = () => {
       console.error(err);
     }
 
-    // console.log(name, brand_name, type, brand_image, price, rating, short_description);
-
     fetch(getUrl() + "products/", {
       method: "POST",
       headers: {
@@ -33,9 +31,9 @@ const AddProduct = () => {
       },
       body: JSON.stringify({
         name,
-        brand_name,
         type,
-        brand_image,
+        image,
+        brand_name,
         price,
         rating,
         short_description,
@@ -59,19 +57,20 @@ const AddProduct = () => {
   return (
     <section className="p-6 dark:bg-black dark:text-white">
       <form
-        onSubmit={(e) => handleSubmit(e)}
         className="container flex flex-col mx-auto space-y-12"
+        onSubmit={handleSubmit}
       >
-        <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-black">
+        <fieldset className="grid grid-cols-4 gap-6 p-12 rounded-md shadow-sm dark:bg-black">
           <div className="space-y-2 col-span-full lg:col-span-1">
-            <p className="font-medium">Add Product</p>
+            <p className="font-medium">Personal Inormation</p>
             <p className="text-xs">
-              Set all the fields carefully. Before, adding make sure that you
-              set everything correctly
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
+              fuga autem eum!
             </p>
           </div>
-          <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 space-y-7">
-            <div className="col-span-full">
+          <div className="grid grid-cols-6 gap-10 col-span-full lg:col-span-3">
+            {/* Name */}
+            <div className="col-span-full sm:col-span-3">
               <Input
                 label="Name"
                 name="name"
@@ -81,16 +80,18 @@ const AddProduct = () => {
                 fullWidth={true}
               />
             </div>
-            <div className="col-span-full">
+            {/*Image */}
+            <div className="col-span-full sm:col-span-3">
               <Input
-                label="Short short_description"
-                name="short_description"
+                label="Image"
+                name="image"
                 variant="bordered"
                 labelPlacement="outside"
-                isRequired={true}
                 fullWidth={true}
               />
             </div>
+
+            {/* brand_name */}
             <div className="col-span-full sm:col-span-3">
               <Select
                 label="Brand Name"
@@ -113,16 +114,8 @@ const AddProduct = () => {
                 ))}
               </Select>
             </div>
+            {/* type */}
             <div className="col-span-full sm:col-span-3">
-              <Input
-                label="Brand Image"
-                name="brand_image"
-                variant="bordered"
-                labelPlacement="outside"
-                fullWidth={true}
-              />
-            </div>
-            <div className="col-span-full sm:col-span-2">
               <div className="col-span-full">
                 <Select
                   label="Type"
@@ -149,7 +142,19 @@ const AddProduct = () => {
                 </Select>
               </div>
             </div>
-            <div className="col-span-full sm:col-span-2">
+            {/* short_description */}
+            <div className="col-span-full">
+              <Input
+                name="short_description"
+                label="Short short_description"
+                variant="bordered"
+                labelPlacement="outside"
+                isRequired={true}
+                fullWidth={true}
+              />
+            </div>
+            {/* price */}
+            <div className="col-span-full sm:col-span-3">
               <div className="col-span-full">
                 <Input
                   label="Price"
@@ -161,7 +166,8 @@ const AddProduct = () => {
                 />
               </div>
             </div>
-            <div className="col-span-full sm:col-span-2">
+            {/* rating */}
+            <div className="col-span-full sm:col-span-3">
               <div className="col-span-full">
                 <Input
                   label="Rating"
