@@ -1,4 +1,4 @@
-import { Spinner } from "@nextui-org/react";
+import Spinner from "./components/Spinner";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 

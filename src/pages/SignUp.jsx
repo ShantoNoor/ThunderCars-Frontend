@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
-import { Input, Spinner } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useEffect, useState, lazy, Suspense } from "react";
 import useAuth from "../utility/useAuth";
 import toast from "react-hot-toast";
+import Spinner from "../components/Spinner";
 
 const Player = lazy(() =>
   import("@lottiefiles/react-lottie-player").then((module) => {

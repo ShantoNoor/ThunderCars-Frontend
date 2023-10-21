@@ -4,12 +4,14 @@ import Features from "../components/Features";
 import Statistics from "../components/Statistics";
 import Subscribe from "../components/Subscribe";
 import Cards from "../components/Cards";
+import Spinner from "../components/Spinner";
 import getUrl from "../utility/getUrl";
 
 const Home = () => {
   const [width, setWidth] = useState(0);
   const [brandData, setBrandData] = useState([]);
   const [bannerData, setBannerData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const url = getUrl();
   useEffect(() => {
@@ -18,6 +20,7 @@ const Home = () => {
       .then((data) => {
         setBrandData(data.filter((brand) => brand.type === "brand"));
         setBannerData(data.find((item) => item.size === "large").ads);
+        setLoading(false)
       })
       .catch((err) => console.error(err));
   }, []);
@@ -36,8 +39,8 @@ const Home = () => {
 
   return (
     <>
-      <Slider data={bannerData} />
-      <Cards data={brandData} />
+      {loading ? (<Spinner />) : (<><Slider data={bannerData} />
+      <Cards data={brandData} /></>)}
       <Features />
       <Statistics />
       <Subscribe />
