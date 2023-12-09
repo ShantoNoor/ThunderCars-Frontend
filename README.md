@@ -17,3 +17,8 @@
 ## Server Link
 
 ### https://thunder-cars-server.vercel.app/
+
+## Technoloy
+- ReactJS, ExpressJS
+- NextUI, MambaUI
+- TailWindCSS
