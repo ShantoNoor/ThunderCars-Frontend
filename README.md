@@ -22,3 +22,7 @@
 - ReactJS, ExpressJS
 - NextUI, MambaUI
 - TailWindCSS
+  
+## Backend Repo
+
+### https://github.com/ShantoNoor/ThunderCars-Backend
